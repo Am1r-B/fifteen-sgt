@@ -27,8 +27,8 @@ function love.keypressed(key)
     end
   end
   
-  -- Temporary
-  print('empty x: ' .. emptyX .. ', empty y: ' .. emptyY)
+  grid[emptyY][emptyX], grid[emptyY - 1][emptyX] = 
+  grid[emptyY - 1][emptyX], grid[emptyY][emptyX]
 end
 
 function love.draw()
