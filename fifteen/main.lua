@@ -27,8 +27,10 @@ function love.keypressed(key)
     end
   end
   
-  grid[emptyY][emptyX], grid[emptyY - 1][emptyX] = 
-  grid[emptyY - 1][emptyX], grid[emptyY][emptyX]
+  if grid[emptyY - 1] then
+    grid[emptyY][emptyX], grid[emptyY - 1][emptyX] = 
+    grid[emptyY - 1][emptyX], grid[emptyY][emptyX]
+  end
 end
 
 function love.draw()
