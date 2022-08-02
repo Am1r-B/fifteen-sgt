@@ -40,7 +40,7 @@ function love.keypressed(key)
     newEmptyX = emptyX + 1
   end
   
-  if grid[newEmptyY] then
+  if grid[newEmptyY] and grid[newEmptyY][newEmptyX] then
     grid[emptyY][emptyX], grid[newEmptyY][newEmptyX] = 
     grid[newEmptyY][newEmptyX], grid[emptyY][emptyX]
   end
