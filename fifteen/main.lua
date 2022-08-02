@@ -49,26 +49,39 @@ function love.load()
     end
   end
   
-  for moveNumber = 1, 1000 do
-    local roll = love.math.random(4)
-    if roll == 1 then
-      move('down')
-    elseif roll == 2 then
-      move('up')
-    elseif roll == 3 then
-      move('right')
-    elseif roll == 4 then
+  function isComplete()
+    for y = 1, gridYCount do
+      for x = 1, gridXCount do
+        if grid[y][x] ~= getInitialValue(x, y) then
+          return false
+        end
+      end
+    end
+    return true
+  end
+  
+  repeat
+    for moveNumber = 1, 1000 do
+      local roll = love.math.random(4)
+      if roll == 1 then
+        move('down')
+      elseif roll == 2 then
+        move('up')
+      elseif roll == 3 then
+        move('right')
+      elseif roll == 4 then
+        move('left')
+      end
+    end
+    
+    for moveNumber = 1, gridXCount - 1 do
       move('left')
     end
-  end
-  
-  for moveNumber = 1, gridXCount - 1 do
-    move('left')
-  end
-  
-  for moveNumber = 1, gridYCount - 1 do
-    move('up')
-  end
+    
+    for moveNumber = 1, gridYCount - 1 do
+      move('up')
+    end
+  until not isComplete()
 end
 
 function love.keypressed(key)
@@ -80,17 +93,7 @@ function love.keypressed(key)
     move(key)
   end
   
-  local complete = true
-  
-  for y = 1, gridYCount do
-    for x = 1, gridXCount do
-      if grid[y][x] ~= getInitialValue(x, y) then
-        complete = false
-      end
-    end
-  end
-  
-  if complete then
+  if isComplete() then
     love.load()
   end
 end
