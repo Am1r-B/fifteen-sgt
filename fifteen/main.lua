@@ -35,7 +35,7 @@ function love.load()
       newEmptyY = emptyY + 1
     elseif direction == 'right' then
       newEmptyX = emptyX - 1
-    elseif direction == 'left' then 
+    elseif direction == 'left' then
       newEmptyX = emptyX + 1
     end
     
@@ -53,9 +53,17 @@ function love.load()
       move('up')
     elseif roll == 3 then
       move('right')
-    elseif rool == 4 then
+    elseif roll == 4 then
       move('left')
     end
+  end
+  
+  for moveNumber = 1, gridXCount - 1 do
+    move('left')
+  end
+  
+  for moveNumber = 1, gridYCount - 1 do
+    move('up')
   end
 end
 
