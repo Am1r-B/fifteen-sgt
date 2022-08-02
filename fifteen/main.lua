@@ -75,6 +75,20 @@ function love.keypressed(key)
   then
     move(key)
   end
+  
+  local complete = true
+  
+  for y = 1, gridYCount do
+    for x = 1, gridXCount do
+      if grid[y][x] ~= (y - 1) * gridXCount + x then
+        complete = false
+      end
+    end
+  end
+  
+  if complete == true then
+    love.load()
+  end
 end
 
 function love.draw()
