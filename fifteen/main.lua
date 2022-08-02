@@ -14,6 +14,23 @@ function love.load()
   end
 end
 
+function love.keypressed(key)
+  local emptyX
+  local emptyY
+  
+  for y = 1, gridYCount do
+    for x = 1, gridXCount do
+      if grid[y][x] == gridXCount * gridYCount then
+        emptyX = x
+        emptyY = y
+      end
+    end
+  end
+  
+  -- Temporary
+  print('empty x: ' .. emptyX .. ', empty y: ' .. emptyY)
+end
+
 function love.draw()
   for y = 1, gridYCount do
     for x = 1, gridXCount do
