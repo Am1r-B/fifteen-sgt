@@ -4,12 +4,16 @@ function love.load()
   gridXCount = 4
   gridYCount = 4
   
+  function getInitialValue(x, y)
+    return (y - 1) * gridXCount + x
+  end
+  
   grid = {}
   
   for y = 1, gridYCount do
     grid[y] = {}
     for x = 1, gridXCount do
-      grid[y][x] = (y - 1) * gridXCount + x
+      grid[y][x] = getInitialValue(x, y)
     end
   end
   
@@ -80,13 +84,13 @@ function love.keypressed(key)
   
   for y = 1, gridYCount do
     for x = 1, gridXCount do
-      if grid[y][x] ~= (y - 1) * gridXCount + x then
+      if grid[y][x] ~= getInitialValue(x, y) then
         complete = false
       end
     end
   end
   
-  if complete == true then
+  if complete then
     love.load()
   end
 end
