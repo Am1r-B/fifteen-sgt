@@ -1,3 +1,7 @@
+function love.load()
+  love.graphics.setNewFont(30)
+end
+
 function love.draw()
   local pieceSize = 100
   local pieceDrawSize = pieceSize - 1
