@@ -1,13 +1,25 @@
 function love.load()
   love.graphics.setNewFont(30)
+  
+  gridXCount = 4
+  gridYCount = 4
+  
+  grid = {}
+  
+  for y = 1, gridYCount do
+    grid[y] = {}
+    for x = 1, gridXCount do
+      grid[y][x] = (y - 1) * gridXCount + x
+    end
+  end
 end
 
 function love.draw()
-  local pieceSize = 100
-  local pieceDrawSize = pieceSize - 1
-  
-  for y = 1, 4 do
-    for x = 1, 4 do
+  for y = 1, gridYCount do
+    for x = 1, gridXCount do
+      local pieceSize = 100
+      local pieceDrawSize = pieceSize - 1
+      
       love.graphics.setColor(.4, .1, .6)
       love.graphics.rectangle(
         'fill',
@@ -19,7 +31,7 @@ function love.draw()
       
       love.graphics.setColor(1, 1, 1)
       love.graphics.print(
-        (y - 1) * 4 + x,
+        grid[y][x],
         (x - 1) * pieceSize,
         (y - 1) * pieceSize
       )
